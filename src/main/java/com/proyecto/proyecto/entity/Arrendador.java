@@ -3,21 +3,28 @@ import java.util.UUID;
 
 import org.hibernate.annotations.SQLDelete;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.persistence.Id;
 
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLDelete(sql = "UPDATE Arrendador SET status = WHERE id=?")
+@SQLDelete(sql = "UPDATE arrendador SET status = WHERE id=?")
 
 
 public class Arrendador {
-    private UUID uuid;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nombre;
     private String apellidos;
     private int edad;
