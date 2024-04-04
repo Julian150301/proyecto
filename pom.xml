@@ -18,7 +18,7 @@
 		<java.version>17</java.version>
 		<!-- Configura las propiedades de SonarQube -->
     	<sonar.host.url>http://sonarqube.dynaco.co/</sonar.host.url>
-    	<sonar.login>${env.sonar}</sonar.login>
+    	<sonar.login>sqp_6af605e12a2319a70a2e72ee0b93a7b9e093b2b7</sonar.login>
     	<sonar.projectKey>Proyecto</sonar.projectKey> 
     <sonar.projectName>Proyecto</sonar.projectName>
     <sonar.projectVersion>1.0</sonar.projectVersion>
