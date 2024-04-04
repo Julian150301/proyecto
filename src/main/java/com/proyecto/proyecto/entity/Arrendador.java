@@ -17,7 +17,6 @@ import jakarta.persistence.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@SQLDelete(sql = "UPDATE arrendador SET status = WHERE id=?")
 
 
 public class Arrendador {

@@ -1,0 +1,10 @@
+set db_host=190.146.2.119
+set db_port=4407
+set db_basedatos=tabla
+set db_usuario=grupo_1_3
+set db_contrasena=grupo_1_3
+set sonar=sqp_6af605e12a2319a70a2e72ee0b93a7b9e093b2b7
+
+set proyectKey=proyecto
+set proyectName=proyecto
+set urlSonar=http://sonarqube.dynaco.co
