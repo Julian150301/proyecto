@@ -48,7 +48,7 @@ public class ArrendadorService {
      public ArrendadorDTO  update(ArrendadorDTO arrendadorDTO){
         Arrendador arrendador = modelMapper.map(arrendadorDTO, Arrendador.class);
         arrendador = arrendadorRepository.save(arrendador);
-        return arrendadorDTO;
+        return modelMapper.map(arrendador, ArrendadorDTO.class);
      }
      public void delete(Long id){
         arrendadorRepository.deleteById(id);

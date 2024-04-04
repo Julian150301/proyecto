@@ -55,7 +55,7 @@ public class ArrendadorController {
         return arrendadorService.update(arrendadorDTO);
     }
 
-    @DeleteMapping(produces= MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/{id}", produces= MediaType.APPLICATION_JSON_VALUE)
     public void delete(@PathVariable Long id){
         arrendadorService.delete(id);
     }
