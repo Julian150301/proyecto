@@ -15,7 +15,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArrendadorDTO {
+
+public class ArrendatarioDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +28,5 @@ public class ArrendadorDTO {
     private int telefono;
     private String contrasena;
     private int tipoCuenta;
+
 }
