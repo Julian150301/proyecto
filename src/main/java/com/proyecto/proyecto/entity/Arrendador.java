@@ -1,7 +1,6 @@
 package com.proyecto.proyecto.entity;
 import java.util.UUID;
 
-import org.hibernate.annotations.SQLDelete;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +28,6 @@ public class Arrendador {
     private int edad;
     private String correo;
     private int telefono;
-    private String contraseña;
+    private String contrasena;
     private int tipoCuenta;
 }
