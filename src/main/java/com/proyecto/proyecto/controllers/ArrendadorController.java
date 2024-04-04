@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping(value = "/grupo13/home/logingFormulario")
+@RequestMapping(value = "/grupo13/logingFormulario")
 public class ArrendadorController {
     ArrendadorService arrendadorService;
     @Autowired
