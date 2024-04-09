@@ -25,6 +25,5 @@ public class ArrendadorDTO {
     private int edad;
     private String correo;
     private int telefono;
-    private String contrasena;
     private int tipoCuenta;
 }
