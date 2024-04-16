@@ -48,7 +48,7 @@
             return arrendadorService.save(arrendadorDTO);
         }
 
-        @PutMapping(produces= MediaType.APPLICATION_JSON_VALUE)
+        @PutMapping(value ="/{id}",produces= MediaType.APPLICATION_JSON_VALUE)
         public ArrendadorDTO update(@RequestBody ArrendadorDTO arrendadorDTO){
             return arrendadorService.update(arrendadorDTO);
         }
