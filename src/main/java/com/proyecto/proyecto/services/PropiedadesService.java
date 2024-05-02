@@ -55,4 +55,25 @@ public class PropiedadesService {
     public void delete(Long id){
         propiedadesRepository.deleteById(id);
     }
+
+    // Nuevo método para reservar una propiedad
+    public PropiedadesDTO reservarPropiedad(Long id, String reservadaPor) {
+        Optional<Propiedades> propiedadesOpt = propiedadesRepository.findById(id);
+        if (propiedadesOpt.isPresent()) {
+            Propiedades propiedades = propiedadesOpt.get();
+            propiedades.setReservada(true);
+            propiedades.setReservadaPor(reservadaPor);
+            propiedades = propiedadesRepository.save(propiedades);
+            return modelMapper.map(propiedades, PropiedadesDTO.class);
+        } else {
+            throw new IllegalArgumentException("La propiedad con el ID " + id + " no existe.");
+        }
+    }
+    public Propiedades getById(Long id) {
+        return propiedadesRepository.findById(id).orElse(null);
+    }
+    
+    public Propiedades save(Propiedades propiedad) {
+        return propiedadesRepository.save(propiedad);
+    }
 }

@@ -24,5 +24,7 @@ public class PropiedadesDTO {
     private String municipio;
     private Number cantidadPerosnas;
     private String departamento;
+    private boolean reservada; 
+    private String reservadaPor;
 
 }

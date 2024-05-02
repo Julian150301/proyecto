@@ -1,6 +1,8 @@
 package com.proyecto.proyecto.entity;
+import java.util.List;
 import java.util.UUID;
 
+import com.proyecto.proyecto.dto.PropiedadesDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Getter
@@ -30,4 +33,10 @@ public class Arrendador {
     private int telefono;
     private String contrasena;
     private int tipoCuenta;
+
+    @OneToMany(mappedBy = "arrendador")
+    private List<Propiedades> propiedades; // Suponiendo que cada propiedad es representada por un objeto PropiedadDTO
+
+    // Constructor, getters y setters
+
 }

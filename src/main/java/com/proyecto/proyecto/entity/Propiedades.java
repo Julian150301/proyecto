@@ -1,11 +1,14 @@
 package com.proyecto.proyecto.entity;
 
+import com.proyecto.proyecto.dto.ArrendadorDTO;
+
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
@@ -23,4 +26,12 @@ public class Propiedades {
     private String municipio;
     private Number cantidadPerosnas;
     private String departamento;
+    private boolean reservada; 
+    private String reservadaPor;
+
+    @ManyToOne
+    private Arrendador arrendador; // Agregar referencia al arrendador
+
+    
+
 }

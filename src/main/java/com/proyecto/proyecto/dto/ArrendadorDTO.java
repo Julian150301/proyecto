@@ -1,5 +1,6 @@
 package com.proyecto.proyecto.dto;
 
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -26,4 +27,6 @@ public class ArrendadorDTO {
     private String correo;
     private int telefono;
     private int tipoCuenta;
+
+    
 }

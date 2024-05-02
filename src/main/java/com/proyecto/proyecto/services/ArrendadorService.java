@@ -40,6 +40,14 @@ public class ArrendadorService {
                                             .collect(Collectors.toList());
        return arrendadorDTO;
     }
+    public Arrendador getById(Long id){
+        Optional<Arrendador> arrendadorOpt = arrendadorRepository.findById(id);
+        if(arrendadorOpt.isPresent()){
+            return arrendadorOpt.get();
+        }
+        return null; // Si no se encuentra ningún arrendador con el ID especificado
+    }
+    
     public ArrendadorDTO  save(ArrendadorDTO arrendadorDTO){
         Arrendador arrendador = modelMapper.map(arrendadorDTO, Arrendador.class);
         arrendador = arrendadorRepository.save(arrendador);

@@ -33,6 +33,7 @@
             this.arrendadorService = arrendadorService;
         }
 
+        
         @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
         public ArrendadorDTO get(@PathVariable Long id){
             return arrendadorService.get(id);
