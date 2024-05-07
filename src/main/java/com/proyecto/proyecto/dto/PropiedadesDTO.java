@@ -22,7 +22,7 @@ public class PropiedadesDTO {
     private Long id;
     private String nombre;
     private String municipio;
-    private Number cantidadPerosnas;
+    private int cantidadPerosnas;
     private String departamento;
     private boolean reservada; 
     private String reservadaPor;
