@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.proyecto.proyecto.dto.ArrendatarioDTO;
+import com.proyecto.proyecto.dto.ArrendadorDTOConr;
+import com.proyecto.proyecto.dto.ArrendatarioDTOConr;
+import com.proyecto.proyecto.entity.Arrendador;
 import com.proyecto.proyecto.entity.Arrendatario;
 import com.proyecto.proyecto.repository.ArrendatarioRepositoryContr;
 
@@ -21,37 +24,51 @@ public class ArrendatarioServiceContr {
         this.modelMapper = modelMapper;
         this.arrendatarioRepositorycContr = arrendatarioRepositorycContr;
     }
-    
-    public ArrendatarioDTO get(long id){
-        Optional<Arrendatario> arrendatarioOpt = arrendatarioRepositorycContr.findById(id);
-        ArrendatarioDTO arrendatarioDTO = null;
-        if(arrendatarioOpt.isPresent()){
-            Arrendatario arrendatario = arrendatarioOpt.get();
-            arrendatarioDTO = modelMapper.map(arrendatario, ArrendatarioDTO.class);
+    public static String hashPassword(String password) throws IllegalArgumentException {
+        if (password == null || password.length() == 0) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
         }
-        return arrendatarioDTO;
+        return BCrypt.hashpw(password, BCrypt.gensalt(12)); 
     }
     
-    public List<ArrendatarioDTO> getAll(){
+    public ArrendatarioDTOConr get(long id){
+        Optional<Arrendatario> arrendatarioOpt = arrendatarioRepositorycContr.findById(id);
+        ArrendatarioDTOConr arrendatarioDTOConr = null;
+        if(arrendatarioOpt.isPresent()){
+            Arrendatario arrendatario = arrendatarioOpt.get();
+            arrendatarioDTOConr = modelMapper.map(arrendatario, ArrendatarioDTOConr.class);
+        }
+        return arrendatarioDTOConr;
+    }
+    
+    public List<ArrendatarioDTOConr> getAll(){
        List<Arrendatario> arrendatarios = (List<Arrendatario>) arrendatarioRepositorycContr.findAll();
        return arrendatarios.stream()
-                           .map(arrendatario -> modelMapper.map(arrendatario, ArrendatarioDTO.class))
+                           .map(arrendatario -> modelMapper.map(arrendatario, ArrendatarioDTOConr.class))
                            .collect(Collectors.toList());
     }
     
-    public ArrendatarioDTO save(ArrendatarioDTO arrendatarioDTO){
-        Arrendatario arrendatario = modelMapper.map(arrendatarioDTO, Arrendatario.class);
+    public ArrendatarioDTOConr save(ArrendatarioDTOConr arrendatarioDTOConr){
+        Arrendatario arrendatario = modelMapper.map(arrendatarioDTOConr, Arrendatario.class);
         arrendatario = arrendatarioRepositorycContr.save(arrendatario);
-        return modelMapper.map(arrendatario, ArrendatarioDTO.class);
+        return modelMapper.map(arrendatario, ArrendatarioDTOConr.class);
     }
+    public ArrendatarioDTOConr saveContrasena(ArrendatarioDTOConr arrendatarioDTOContra) {
+        Arrendatario arrendatario = modelMapper.map(arrendatarioDTOContra, Arrendatario.class);
+        String hashedPassword = hashPassword(arrendatarioDTOContra.getContrasena()); 
+        arrendatario.setContrasena(hashedPassword);
+        arrendatario = arrendatarioRepositorycContr.save(arrendatario); 
+        return modelMapper.map(arrendatario, ArrendatarioDTOConr.class);
+      }
     
-    public ArrendatarioDTO update(ArrendatarioDTO arrendatarioDTO){
-        Arrendatario arrendatario = modelMapper.map(arrendatarioDTO, Arrendatario.class);
+    public ArrendatarioDTOConr update(ArrendatarioDTOConr arrendatarioDTOConr){
+        Arrendatario arrendatario = modelMapper.map(arrendatarioDTOConr, Arrendatario.class);
         arrendatario = arrendatarioRepositorycContr.save(arrendatario);
-        return modelMapper.map(arrendatario, ArrendatarioDTO.class);
+        return modelMapper.map(arrendatario, ArrendatarioDTOConr.class);
     }
     
     public void delete(Long id){
         arrendatarioRepositorycContr.deleteById(id);
     }
+    
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyecto.proyecto.dto.ArrendadorDTO;
 import com.proyecto.proyecto.dto.ArrendadorDTOConr;
 import com.proyecto.proyecto.services.ArrendadorServiceContr;
 
@@ -19,7 +20,7 @@ public class ArrendadorContrController {
         this.arrendadorServiceContr = arrendadorServiceContr;
     }
         @PutMapping(value ="/{id}",produces= MediaType.APPLICATION_JSON_VALUE)
-        public ArrendadorDTOConr update(@RequestBody ArrendadorDTOConr arrendadorDTOConr){
-        return arrendadorServiceContr.update(arrendadorDTOConr);
+        public ArrendadorDTOConr update(@RequestBody ArrendadorDTOConr arrendadorDTOcConr){
+            return arrendadorServiceContr.update(arrendadorDTOcConr);
         }
 }

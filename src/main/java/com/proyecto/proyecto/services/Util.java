@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Util {
-    /*public static String getSHA1(String contrasena) throws NoSuchAlgorithmException {
+    public static String getSHA1(String contrasena) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-1");
         byte[] hash = digest.digest(contrasena.getBytes(StandardCharsets.UTF_8));
         StringBuilder hexString = new StringBuilder();
@@ -15,5 +15,5 @@ public class Util {
             hexString.append(hex);
         }
         return hexString.toString();
-    }*/
+    }
 }

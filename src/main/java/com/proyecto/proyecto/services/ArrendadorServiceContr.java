@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.stereotype.Service;
 
 import com.proyecto.proyecto.dto.ArrendadorDTOConr;
@@ -35,6 +35,12 @@ public class ArrendadorServiceContr {
         }
         return arrendadorDTOConr;
     }
+    public static String hashPassword(String password) throws IllegalArgumentException {
+        if (password == null || password.length() == 0) {
+            throw new IllegalArgumentException("Password cannot be null or empty");
+        }
+        return BCrypt.hashpw(password, BCrypt.gensalt(12)); 
+    }
     public List<ArrendadorDTOConr> get(){
        List<Arrendador> arrendadores = (List<Arrendador>) arrendadorRepositoryContr.findAll();
        List<ArrendadorDTOConr> arrendadorDTOConrs = arrendadores.stream()
@@ -55,12 +61,13 @@ public class ArrendadorServiceContr {
         arrendador = arrendadorRepositoryContr.save(arrendador);
         return arrendadorDTOConr;
      }
-    /*public ArrendadorDTOConr saveUser(ArrendadorDTOConr arrendadorDTOConr){
-        User user = modelMapper.map(arrendadorDTOConr, User.class);
-        ArrendadorDTOConr arrendadorDTOConr = arrendadorDTOConr.getByCode(arrendadorDTOConr.getContrasena());
-        user.setStatus(Status.ACTIVE);
-        user.setPassword(arrendadorDTOConr.getPassword());
-    }*/
+     public ArrendadorDTOConr saveContrasena(ArrendadorDTOConr arrendadorDTOContra) {
+        Arrendador arrendador = modelMapper.map(arrendadorDTOContra, Arrendador.class);
+        String hashedPassword = hashPassword(arrendadorDTOContra.getContrasena()); 
+        arrendador.setContrasena(hashedPassword);
+        arrendador = arrendadorRepositoryContr.save(arrendador); 
+        return modelMapper.map(arrendador, ArrendadorDTOConr.class);
+      }
 
     public ArrendadorDTOConr  update(ArrendadorDTOConr arrendadorDTOConr){
         Arrendador arrendador = modelMapper.map(arrendadorDTOConr, Arrendador.class);
