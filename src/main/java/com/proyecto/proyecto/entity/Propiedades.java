@@ -22,6 +22,7 @@ public class Propiedades {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long idArrendador;
     private String nombre;
     private String municipio;
     private int cantidadPerosnas;

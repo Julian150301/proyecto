@@ -69,6 +69,17 @@ public class PropiedadesService {
             throw new IllegalArgumentException("La propiedad con el ID " + id + " no existe.");
         }
     }
+
+    // Nuevo método para obtener propiedades por ID del arrendador
+    public List<PropiedadesDTO> getByArrendadorId(Long idArrendador) {
+        List<Propiedades> propiedadesList = propiedadesRepository.findByIdArrendador(idArrendador);
+        return propiedadesList.stream()
+                              .map(propiedad -> modelMapper.map(propiedad, PropiedadesDTO.class))
+                              .collect(Collectors.toList());
+    }
+    
+
+
     public Propiedades getById(Long id) {
         return propiedadesRepository.findById(id).orElse(null);
     }
